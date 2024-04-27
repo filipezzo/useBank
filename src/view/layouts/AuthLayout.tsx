@@ -12,7 +12,7 @@ export function AuthLayout() {
 			</section>
 			<section className="relative hidden  h-full w-1/2  items-center justify-center  p-8 xl:flex   ">
 				<img
-					className=" h-full max-h-[960px] w-full  max-w-[656px] rounded-[32px]  object-cover   "
+					className=" h-full max-h-[960px] w-full  max-w-[656px] rounded-[32px] object-cover shadow-md   "
 					src="https://images.unsplash.com/photo-1541599468348-e96984315921?q=80&w=1960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 					alt="banner de ilustracao"
 				/>

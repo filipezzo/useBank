@@ -1,19 +1,30 @@
 import { ComponentProps } from "react";
+import { cn } from "../../app/utils/cn";
 
 interface InputProps extends ComponentProps<"input"> {
-	name: string;
+	control?: any;
+	error?: string;
 }
 
-export function Input({ name, id, placeholder, ...rest }: InputProps) {
-	const inputId = id ?? name;
+export function Input({
+	id,
+	placeholder,
+	error,
+	control,
+	...rest
+}: InputProps) {
+	const inputId = id ?? "user";
 
 	return (
 		<div className="relative">
 			<input
 				id={inputId}
-				name={name}
-				className="peer h-[52px] w-full rounded-lg border border-gray-500 bg-white px-3 pt-4 text-gray-800 outline-none transition-all placeholder-shown:pt-0 focus:border-blue-900"
+				className={cn(
+					"peer h-[52px] w-full rounded-lg border border-gray-500 bg-white px-3 pt-4 text-gray-800 outline-none transition-all placeholder-shown:pt-0 focus:border-blue-900",
+					error && "!border-rose-500",
+				)}
 				placeholder=" "
+				{...control}
 				{...rest}
 			/>
 			<label
