@@ -1,17 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../app/hooks/useAuth";
 
 interface IAuth {
 	isProtected: boolean;
 }
 
 export function AuthGuard({ isProtected }: IAuth) {
-	const signin = false;
+	const { user } = useAuth();
 
-	if (!signin && isProtected) {
+	if (!user && isProtected) {
 		return <Navigate to="/login" replace />;
 	}
 
-	if (signin && !isProtected) {
+	if (user && !isProtected) {
 		return <Navigate to="/" />;
 	}
 

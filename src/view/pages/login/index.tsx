@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { Loader } from "../../components/Loader";
 import { useLoginController } from "./useLoginController";
 
 export function Login() {
-	const { register, handleSubmit, errors } = useLoginController();
+	const { register, handleSubmit, errors, isPending } = useLoginController();
 
 	return (
 		<>
@@ -40,8 +41,8 @@ export function Login() {
 						{errors.password.message}
 					</span>
 				)}
-				<Button type="submit" className="mt-2">
-					Criar conta
+				<Button disabled={isPending} type="submit" className="mt-2">
+					{isPending ? <Loader /> : "Entrar"}
 				</Button>
 			</form>
 		</>

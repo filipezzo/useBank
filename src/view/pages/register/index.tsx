@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { Loader } from "../../components/Loader";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-	const { errors, onSubmit, register } = useRegisterController();
+	const { errors, onSubmit, register, isPending } = useRegisterController();
 
 	return (
 		<>
@@ -51,8 +52,9 @@ export function Register() {
 						{errors.password?.message}
 					</span>
 				)}
-				<Button type="submit" className="mt-2">
-					Entrar
+
+				<Button disabled={isPending} type="submit" className="mt-2">
+					{isPending ? <Loader /> : "Criar"}
 				</Button>
 			</form>
 		</>
