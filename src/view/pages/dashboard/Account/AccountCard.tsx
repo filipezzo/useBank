@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import { useDashboard } from "../../../../app/hooks/useDashboard";
+import { cn } from "../../../../app/utils/cn";
 import { formatCurrency } from "../../../../app/utils/formatCurrency";
 
 interface CardProps {
@@ -8,6 +10,7 @@ interface CardProps {
 }
 
 export function AccountCard({ balance, bank, icon }: CardProps) {
+	const { showingValues } = useDashboard();
 	return (
 		<div className="mb-1 flex h-[200px] w-full   flex-col justify-between rounded-2xl border-b-4 border-b-black bg-gray-500 p-4 text-gray-900 shadow-md  ">
 			<div className="space-y-4">
@@ -15,7 +18,9 @@ export function AccountCard({ balance, bank, icon }: CardProps) {
 				<h3 className="font-medium">{bank}</h3>
 			</div>
 			<div>
-				<h4 className="font-medium">{formatCurrency(balance)}</h4>
+				<h4 className={cn(!showingValues && "blur-sm")}>
+					{formatCurrency(balance)}
+				</h4>
 				<span className="block text-gray-700/80">Saldo atual</span>
 			</div>
 		</div>

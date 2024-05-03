@@ -20,7 +20,11 @@ function App() {
 				<Router />
 				<Toaster />
 			</AuthProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
+			<ReactQueryDevtools
+				position="bottom"
+				buttonPosition="bottom-left"
+				initialIsOpen={false}
+			/>
 		</QueryClientProvider>
 	);
 }

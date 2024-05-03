@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
+import { useAuth } from "../../../app/hooks/useAuth";
 import { auth } from "../../../app/lib/firebase";
 
 const schema = z.object({
@@ -32,10 +33,12 @@ export function useLoginController() {
 			await signInWithEmailAndPassword(auth, email, password),
 	});
 
+	const { setUser } = useAuth();
+
 	const handleSubmit = loginSubmit(async ({ email, password }) => {
 		try {
 			const { user } = await mutateAsync({ email, password });
-			console.log(user);
+			setUser(user);
 		} catch (error) {
 			toast.error("Email ou senha incorretos.");
 		}
